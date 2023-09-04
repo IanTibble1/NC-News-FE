@@ -85,6 +85,7 @@ button:focus-visible {
 
 nav {
   background-color: blue;
+  color: ;
 }
 
 nav ul {
@@ -157,5 +158,119 @@ nav li {
     max-width: auto;
     height: auto;
     min-height: 300px;
+  }
+}
+
+a {
+  color: white;
+}
+
+.loading {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5em;
+}
+
+.article-card {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: repeat(3, auto);
+  gap: 1rem;
+  align-items: center;
+  border: 1px solid black;
+  padding: 10px;
+}
+
+.article-image {
+  grid-row: span 3;
+}
+
+.article-image img {
+  grid-row: span 3;
+}
+
+.vote-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid black;
+  padding-top: 1rem;
+}
+
+.blurred-textbox {
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  max-width: 500px;
+}
+
+@media only screen and (max-width: 900px) {
+  .article-card {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    align-items: center;
+    gap: 20px;
+  }
+
+  .article-title,
+  .article-author,
+  .article-body {
+    margin-top: 0;
+    margin-bottom: 0;
+    border: 1px solid black;
+  }
+
+  .blurred-textbox {
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    max-width: 500px;
+    margin: auto;
+  }
+
+  .article-image {
+    grid-row: span 1;
+  }
+
+  .article-image img {
+    max-width: 500px;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .article-card {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    align-items: center;
+    gap: 20px;
+  }
+
+  .article-title,
+  .article-author,
+  .article-body {
+    margin-top: 0;
+    margin-bottom: 0;
+    border: 1px solid black;
+  }
+
+  .blurred-textbox {
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    max-width: 500px;
+    margin: auto;
+  }
+
+  .article-image {
+    grid-row: span 1;
+  }
+
+  .article-image img {
+    max-width: 300px;
   }
 }
