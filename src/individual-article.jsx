@@ -4,6 +4,7 @@ import axiosBase from "./components/axios-base";
 import ArticleCard from "./components/article-card";
 import Header from "./components/header";
 import NavBar from "./components/navBar";
+import CommentList from "./components/comment-list";
 
 const SingleArticle = () => {
   const { articleId } = useParams();
@@ -19,6 +20,7 @@ const SingleArticle = () => {
       <Header />
       <NavBar />
       <ArticleCard key={article.article_id} article={article} />
+      <CommentList key={article.title} article_id={articleId} />
     </main>
   );
 };
