@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axiosBase from "./axios-base";
+import CommentCard from "./comment-card";
 
 const CommentList = ({ article_id }) => {
   const [commentList, setCommentList] = useState([]);
@@ -9,7 +10,13 @@ const CommentList = ({ article_id }) => {
       setCommentList(data.comments);
     });
   }, []);
-  return <h3> will be comment cards</h3>;
+  return (
+    <section>
+      {commentList.map((comment) => (
+        <CommentCard key={comment.comment_id} comment={comment} />
+      ))}
+    </section>
+  );
 };
 
 export default CommentList;
