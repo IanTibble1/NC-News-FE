@@ -215,14 +215,6 @@ a {
     gap: 20px;
   }
 
-  .article-title,
-  .article-author,
-  .article-body {
-    margin-top: 0;
-    margin-bottom: 0;
-    border: 1px solid black;
-  }
-
   .blurred-textbox {
     padding: 20px;
     background: rgba(255, 255, 255, 0.2);
@@ -247,14 +239,6 @@ a {
     grid-template-columns: repeat(1, 1fr);
     align-items: center;
     gap: 20px;
-  }
-
-  .article-title,
-  .article-author,
-  .article-body {
-    margin-top: 0;
-    margin-bottom: 0;
-    border: 1px solid black;
   }
 
   .blurred-textbox {
