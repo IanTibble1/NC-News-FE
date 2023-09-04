@@ -2,16 +2,18 @@ import Header from "./components/header";
 import NavBar from "./components/navBar";
 import ArticleList from "./components/article-list";
 import { useState, useEffect } from "react";
-import axios from "axios";
+import fetchArticles from "./components/fetch-articles";
 
 const AllArticles = () => {
   const [articlesList, setArticlesList] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    axios
-      .get("https://news-server-1ny4.onrender.com/api/articles")
+    setIsLoading(true);
+    fetchArticles()
       .then(({ data }) => {
         setArticlesList(data.articles);
+        setIsLoading(false);
       })
       .catch((err) => {
         console.log(err);
@@ -23,11 +25,15 @@ const AllArticles = () => {
       <Header />
       <NavBar />
       <button>Topics filler</button>
-      <div className="article-grid">
-        {articlesList.map((article) => (
-          <ArticleList key={article.article_id} article={article} />
-        ))}
-      </div>
+      {isLoading ? (
+        <p className="loading">Loading...</p>
+      ) : (
+        <div className="article-grid">
+          {articlesList.map((article) => (
+            <ArticleList key={article.article_id} article={article} />
+          ))}
+        </div>
+      )}
     </main>
   );
 };
