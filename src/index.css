@@ -23,9 +23,10 @@ body {
   background-image: url("../public/SL-112119-25250-32.jpg");
   background-size: cover;
   background-position: center center;
+  background-attachment: fixed;
 }
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 900px) {
   body {
     margin: 0;
     display: flex;
@@ -59,16 +60,18 @@ h1 {
 button {
   border-radius: 8px;
   border: 1px solid transparent;
+  margin-top: 15px;
+  margin-bottom: 30px;
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
+  background-color: grey;
   cursor: pointer;
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: #646cff;
+  border-color: white;
 }
 button:focus,
 button:focus-visible {
@@ -94,4 +97,65 @@ nav ul {
 
 nav li {
   display: inline;
+}
+
+.article-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.article-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.article-imgs {
+  border-radius: 10%;
+  max-width: 100%;
+  height: auto;
+  min-height: 300px;
+}
+
+@media only screen and (max-width: 900px) {
+  .article-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .article-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .article-imgs {
+    border-radius: 10%;
+    max-width: auto;
+    height: auto;
+    min-height: 300px;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .article-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 20px;
+  }
+
+  .article-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .article-imgs {
+    border-radius: 10%;
+    max-width: auto;
+    height: auto;
+    min-height: 300px;
+  }
 }
