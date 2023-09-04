@@ -6,12 +6,12 @@ import AllArticles from "./all-articles";
 
 function App() {
   return (
-    <body>
+    <main>
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/articles" element={<AllArticles />} />
       </Routes>
-    </body>
+    </main>
   );
 }
 
