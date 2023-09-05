@@ -5,7 +5,9 @@ import { useState } from "react";
 const ArticleCard = ({ article }) => {
   const [voteCount, setVoteCount] = useState(article.votes);
   const [hasVoted, setHasVoted] = useState(false);
-  const handleClick = (event) => {
+  const [hasRemovedVote, setHasRemovedVote] = useState(false);
+
+  const handleClickAdd = (event) => {
     event.preventDefault();
     if (hasVoted === false) {
       setVoteCount((prevVoteCount) => prevVoteCount + 1);
@@ -14,12 +16,34 @@ const ArticleCard = ({ article }) => {
       axiosBase
         .patch(`articles/${article.article_id}`, { inc_vote: 1 })
         .then(() => {
-          alert("Thank you for voting");
+          alert("You vote has been registered");
+          setHasRemovedVote(false);
         })
         .catch((err) => {
           console.log(err);
           setVoteCount((prevVoteCount) => prevVoteCount - 1);
           setHasVoted(false);
+          alert("There was a problem with your vote, please try again");
+        });
+    }
+  };
+
+  const handleClickRemove = (event) => {
+    event.preventDefault();
+    if (hasRemovedVote === false) {
+      setVoteCount((prevVoteCount) => prevVoteCount - 1);
+      setHasRemovedVote(true);
+
+      axiosBase
+        .patch(`articles/${article.article_id}`, { inc_vote: 1 })
+        .then(() => {
+          alert("Your vote has been registered");
+          setHasVoted(false);
+        })
+        .catch((err) => {
+          console.log(err);
+          setVoteCount((prevVoteCount) => prevVoteCount + 1);
+          setHasRemovedVote(false);
           alert("There was a problem with your vote, please try again");
         });
     }
@@ -46,9 +70,12 @@ const ArticleCard = ({ article }) => {
             {article.body} <br />
           </p>
           <div className="vote-section">
-            <p>Votes: {voteCount}</p>
-            <button onClick={handleClick} type="submit">
-              Add vote
+            <button onClick={handleClickAdd} type="submit">
+              👍 Add Vote
+            </button>
+            Votes: {voteCount}
+            <button onClick={handleClickRemove} type="submit">
+              👎 Remove Vote
             </button>
           </div>
         </div>
