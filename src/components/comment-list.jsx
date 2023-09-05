@@ -1,11 +1,17 @@
 import { useEffect, useState } from "react";
 import axiosBase from "./axios-base";
 import CommentCard from "./comment-card";
-import PostComment from "./post-comment-form";
+import PostCommentForm from "./post-comment-form";
 
 const CommentList = ({ article_id }) => {
   const [commentList, setCommentList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+
+  const handleOptimisticComment = (comment) => {
+    setCommentList((prevCommentList) => {
+      return [comment, ...prevCommentList];
+    });
+  };
 
   useEffect(() => {
     setIsLoading(true);
@@ -13,11 +19,15 @@ const CommentList = ({ article_id }) => {
       setCommentList(data.comments);
       setIsLoading(false);
     });
-  }, []);
+  }, [article_id]);
 
   return (
     <section>
-      <PostComment article_id={article_id} />
+      <PostCommentForm
+        article_id={article_id}
+        handleOptimisticComment={handleOptimisticComment}
+        setCommentList={setCommentList}
+      />
       <h3>Comments</h3>
       {isLoading ? (
         <p className="loading">Loading...</p>
