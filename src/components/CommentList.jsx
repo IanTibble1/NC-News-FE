@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import axiosBase from "./axios-base";
-import CommentCard from "./comment-card";
-import PostCommentForm from "./post-comment-form";
+import axiosBase from "./axiosBase";
+import CommentCard from "./CommentCard";
+import PostCommentForm from "./PostCommentForm";
 
 const CommentList = ({ article_id }) => {
   const [commentList, setCommentList] = useState([]);

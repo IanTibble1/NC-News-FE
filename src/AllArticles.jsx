@@ -1,8 +1,8 @@
-import Header from "./components/header";
-import NavBar from "./components/navBar";
-import ArticleList from "./components/article-list";
+import Header from "./components/Header";
+import NavBar from "./components/NavBar";
+import ArticleList from "./components/ArticleList";
 import { useState, useEffect } from "react";
-import fetchArticles from "./components/fetch-articles";
+import fetchArticles from "./components/fetchArticle";
 
 const AllArticles = () => {
   const [articlesList, setArticlesList] = useState([]);

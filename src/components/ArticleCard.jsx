@@ -1,5 +1,5 @@
 import moment from "moment";
-import axiosBase from "./axios-base";
+import axiosBase from "./axiosBase";
 import { useState } from "react";
 
 const ArticleCard = ({ article }) => {
