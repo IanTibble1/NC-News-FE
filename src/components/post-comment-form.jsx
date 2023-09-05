@@ -29,9 +29,11 @@ const PostCommentForm = ({
         body: `${comment}`,
       })
       .then(() => {
+        alert("Your comment has been posted");
         setComment("");
       })
       .catch((err) => {
+        alert("Something went wrong. Please try posting again");
         setCommentList((prevCommentList) => {
           return prevCommentList.filter((comment) => {
             comment !== optimisticComment;
