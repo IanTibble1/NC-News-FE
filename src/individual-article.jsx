@@ -4,21 +4,30 @@ import axiosBase from "./components/axios-base";
 import ArticleCard from "./components/article-card";
 import Header from "./components/header";
 import NavBar from "./components/navBar";
+import CommentList from "./components/comment-list";
 
 const SingleArticle = () => {
   const { articleId } = useParams();
   const [article, setArticle] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    setIsLoading(true);
     axiosBase.get(`articles/${articleId}`).then(({ data }) => {
       setArticle(data.articles);
+      setIsLoading(false);
     });
   }, []);
   return (
     <main>
       <Header />
       <NavBar />
-      <ArticleCard key={article.article_id} article={article} />
+      {isLoading ? (
+        <p className="loading">Loading...</p>
+      ) : (
+        <ArticleCard key={article.article_id} article={article} />
+      )}
+      <CommentList key={article.title} article_id={articleId} />
     </main>
   );
 };

@@ -215,14 +215,6 @@ a {
     gap: 20px;
   }
 
-  .article-title,
-  .article-author,
-  .article-body {
-    margin-top: 0;
-    margin-bottom: 0;
-    border: 1px solid black;
-  }
-
   .blurred-textbox {
     padding: 20px;
     background: rgba(255, 255, 255, 0.2);
@@ -249,14 +241,6 @@ a {
     gap: 20px;
   }
 
-  .article-title,
-  .article-author,
-  .article-body {
-    margin-top: 0;
-    margin-bottom: 0;
-    border: 1px solid black;
-  }
-
   .blurred-textbox {
     padding: 20px;
     background: rgba(255, 255, 255, 0.2);
@@ -273,4 +257,20 @@ a {
   .article-image img {
     max-width: 300px;
   }
+}
+
+.comment-card {
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  max-width: 500px;
+  margin: auto;
+  margin-bottom: 10px;
+}
+
+.comment-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
