@@ -5,9 +5,12 @@ const CommentCard = ({ comment }) => {
     .utc()
     .format("h:mm a, DD-MM-YYYY ");
   return (
-    <section>
-      <p>{comment.author}</p>
-      {formatDate}
+    <section className="comment-card">
+      <div className="comment-header-user">
+        <p>{comment.author}</p>
+      </div>
+      <p>{formatDate}</p>
+
       <p>{comment.body}</p>
       <p>Votes: {comment.votes}</p>
     </section>

@@ -14,6 +14,7 @@ const CommentList = ({ article_id }) => {
   }, []);
   return (
     <section>
+      <h3>Comments</h3>
       {isLoading ? (
         <p className="loading">Loading...</p>
       ) : (
