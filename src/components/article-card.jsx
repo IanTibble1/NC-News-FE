@@ -4,18 +4,22 @@ import { useState } from "react";
 
 const ArticleCard = ({ article }) => {
   const [voteCount, setVoteCount] = useState(article.votes);
+  const [hasVoted, setHasVoted] = useState(false);
   const handleClick = (event) => {
     event.preventDefault();
+    if (hasVoted === false) {
+      setVoteCount((prevVoteCount) => prevVoteCount + 1);
+      setHasVoted(true);
 
-    setVoteCount((prevVoteCount) => prevVoteCount + 1);
-
-    axiosBase
-      .patch(`articles/${article.article_id}`, { inc_vote: 1 })
-      .then(() => {})
-      .catch((err) => {
-        console.log(err);
-        setVoteCount((prevVoteCount) => prevVoteCount - 1);
-      });
+      axiosBase
+        .patch(`articles/${article.article_id}`, { inc_vote: 1 })
+        .then(() => {})
+        .catch((err) => {
+          console.log(err);
+          setVoteCount((prevVoteCount) => prevVoteCount - 1);
+          setHasVoted(false);
+        });
+    }
   };
 
   const formatDate = moment(article.created_at).utc().format("DD-MM-YYYY");
