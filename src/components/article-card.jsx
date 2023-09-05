@@ -1,16 +1,20 @@
 import moment from "moment";
 import axiosBase from "./axios-base";
-import { useParams } from "react-router-dom";
+import { useState } from "react";
 
 const ArticleCard = ({ article }) => {
+  const [voteCount, setVoteCount] = useState(article.votes);
   const handleClick = (event) => {
     event.preventDefault();
+
+    setVoteCount((prevVoteCount) => prevVoteCount + 1);
 
     axiosBase
       .patch(`articles/${article.article_id}`, { inc_vote: 1 })
       .then(() => {})
       .catch((err) => {
         console.log(err);
+        setVoteCount((prevVoteCount) => prevVoteCount - 1);
       });
   };
 
@@ -35,7 +39,7 @@ const ArticleCard = ({ article }) => {
             {article.body} <br />
           </p>
           <div className="vote-section">
-            <p>Votes: {article.votes}</p>
+            <p>Votes: {voteCount}</p>
             <button onClick={handleClick} type="submit">
               Add vote
             </button>
