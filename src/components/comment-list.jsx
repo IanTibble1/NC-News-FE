@@ -21,6 +21,8 @@ const CommentList = ({ article_id }) => {
       <h3>Comments</h3>
       {isLoading ? (
         <p className="loading">Loading...</p>
+      ) : commentList.length === 0 ? (
+        <p>Be the first to comment!</p>
       ) : (
         commentList.map((comment) => (
           <CommentCard key={comment.comment_id} comment={comment} />
