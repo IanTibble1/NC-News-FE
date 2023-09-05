@@ -13,11 +13,14 @@ const ArticleCard = ({ article }) => {
 
       axiosBase
         .patch(`articles/${article.article_id}`, { inc_vote: 1 })
-        .then(() => {})
+        .then(() => {
+          alert("Thank you for voting");
+        })
         .catch((err) => {
           console.log(err);
           setVoteCount((prevVoteCount) => prevVoteCount - 1);
           setHasVoted(false);
+          alert("There was a problem with your vote, please try again");
         });
     }
   };
