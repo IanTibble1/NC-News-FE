@@ -1,9 +1,8 @@
-import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
-import HomePage from "./homepage";
-import AllArticles from "./all-articles";
-import SingleArticle from "./individual-article";
+import HomePage from "./HomePage";
+import AllArticles from "./AllArticles";
+import SingleArticle from "./SingleArticle";
 
 function App() {
   return (

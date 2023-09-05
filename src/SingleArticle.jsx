@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import axiosBase from "./components/axios-base";
-import ArticleCard from "./components/article-card";
-import Header from "./components/header";
-import NavBar from "./components/navBar";
-import CommentList from "./components/comment-list";
+import axiosBase from "./components/axiosBase";
+import ArticleCard from "./components/ArticleCard";
+import Header from "./components/Header";
+import NavBar from "./components/NavBar";
+import CommentList from "./components/CommentList";
 
 const SingleArticle = () => {
   const { articleId } = useParams();
