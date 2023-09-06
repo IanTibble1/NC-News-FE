@@ -14,16 +14,17 @@ const AllArticles = () => {
   const [topicsList, setTopicsList] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
   const [sortBy, setSortBy] = useState("created_at");
+  const [order, setOrder] = useState("desc");
 
   useEffect(() => {
     setIsLoading(true);
-    fetchArticles(searchParams, sortBy)
+    fetchArticles(searchParams, sortBy, order)
       .then(({ data }) => {
         setArticlesList(data.articles);
         setIsLoading(false);
       })
       .catch((err) => {});
-  }, [searchParams, sortBy]);
+  }, [searchParams, sortBy, order]);
 
   useEffect(() => {
     fetchTopics()
@@ -47,7 +48,7 @@ const AllArticles = () => {
           setSearchParams={setSearchParams}
         />
       ))}
-      <SortByMenu setSortBy={setSortBy} />
+      <SortByMenu setSortBy={setSortBy} setOrder={setOrder} />
 
       {isLoading ? (
         <p className="loading">Loading...</p>
