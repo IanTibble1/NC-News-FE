@@ -1,7 +1,13 @@
-const TopicList = ({ topic }) => {
+const TopicList = ({ topic, setSearchParams }) => {
   return (
     <div className="cat-buttons">
-      <button>{topic.slug}</button>
+      <button
+        onClick={() => {
+          setSearchParams({ topic: topic.slug });
+        }}
+      >
+        {topic.slug}
+      </button>
     </div>
   );
 };

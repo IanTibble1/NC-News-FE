@@ -5,21 +5,23 @@ import { useState, useEffect } from "react";
 import fetchArticles from "./components/fetchArticle";
 import fetchTopics from "./components/fetchTopics";
 import TopicList from "./components/TopicList";
+import { useSearchParams } from "react-router-dom";
 
 const AllArticles = () => {
   const [articlesList, setArticlesList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [topicsList, setTopicsList] = useState([]);
+  const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
     setIsLoading(true);
-    fetchArticles()
+    fetchArticles(searchParams)
       .then(({ data }) => {
         setArticlesList(data.articles);
         setIsLoading(false);
       })
       .catch((err) => {});
-  }, []);
+  }, [searchParams]);
 
   useEffect(() => {
     fetchTopics()
@@ -37,7 +39,11 @@ const AllArticles = () => {
       <NavBar />
       <h4>Filter by Topic</h4>
       {topicsList.map((topic) => (
-        <TopicList key={topic.slug} topic={topic} />
+        <TopicList
+          key={topic.slug}
+          topic={topic}
+          setSearchParams={setSearchParams}
+        />
       ))}
 
       {isLoading ? (

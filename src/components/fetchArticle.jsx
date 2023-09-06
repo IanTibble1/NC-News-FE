@@ -1,7 +1,7 @@
 import axiosBase from "./axiosBase";
 
-const fetchArticles = () => {
-  return axiosBase.get("articles");
+const fetchArticles = (searchParams) => {
+  return axiosBase.get("articles", { params: searchParams });
 };
 
 export default fetchArticles;
