@@ -6,22 +6,24 @@ import fetchArticles from "./components/fetchArticle";
 import fetchTopics from "./components/fetchTopics";
 import TopicList from "./components/TopicList";
 import { useSearchParams } from "react-router-dom";
+import SortByMenu from "./components/SortByMenu";
 
 const AllArticles = () => {
   const [articlesList, setArticlesList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [topicsList, setTopicsList] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
+  const [sortBy, setSortBy] = useState("created_at");
 
   useEffect(() => {
     setIsLoading(true);
-    fetchArticles(searchParams)
+    fetchArticles(searchParams, sortBy)
       .then(({ data }) => {
         setArticlesList(data.articles);
         setIsLoading(false);
       })
       .catch((err) => {});
-  }, [searchParams]);
+  }, [searchParams, sortBy]);
 
   useEffect(() => {
     fetchTopics()
@@ -31,7 +33,7 @@ const AllArticles = () => {
       .catch((err) => {
         console.log(err);
       });
-  });
+  }, []);
 
   return (
     <main>
@@ -45,6 +47,7 @@ const AllArticles = () => {
           setSearchParams={setSearchParams}
         />
       ))}
+      <SortByMenu setSortBy={setSortBy} />
 
       {isLoading ? (
         <p className="loading">Loading...</p>
