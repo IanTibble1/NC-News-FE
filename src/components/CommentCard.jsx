@@ -1,6 +1,14 @@
 import moment from "moment";
+import axiosBase from "./axiosBase";
 
 const CommentCard = ({ comment }) => {
+  const handleDelete = () => {
+    axiosBase
+      .delete(`comments/${comment.comment_id}`)
+      .then(() => {})
+      .catch(() => {});
+  };
+
   const formatDate = moment(comment.created_at)
     .utc()
     .format("h:mm a, DD-MM-YYYY ");
@@ -13,6 +21,9 @@ const CommentCard = ({ comment }) => {
 
       <p>{comment.body}</p>
       <p>Votes: {comment.votes}</p>
+      <div>
+        <button onClick={handleDelete}>Delete Comment</button>
+      </div>
     </section>
   );
 };
