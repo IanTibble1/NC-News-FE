@@ -26,7 +26,7 @@ const AllArticles = () => {
           setIsLoading(false);
 
           if (err.response) {
-            setError(err.response.data.message);
+            setError(err.response.data.msg);
           } else {
             setError(
               "Unable to connect, please check internet connection and try again"
@@ -46,7 +46,6 @@ const AllArticles = () => {
           setError(null);
         })
         .catch((err) => {
-          console.log(err);
           setIsLoading(false);
           if (err.response.data.msg) {
             setError(err.response.data.msg);
@@ -65,12 +64,11 @@ const AllArticles = () => {
       <NavBar />
       {!error && (
         <section>
-          {" "}
           <h4>Filter by Topic</h4>
           {topicsList.map((topic) => (
             <TopicList key={topic.slug} topic={topic} />
           ))}
-          <SortByMenu />{" "}
+          <SortByMenu />
         </section>
       )}
 
