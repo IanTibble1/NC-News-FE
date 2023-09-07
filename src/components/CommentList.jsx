@@ -13,6 +13,17 @@ const CommentList = ({ article_id }) => {
     });
   };
 
+  const handleOptimisticDelete = (commentId) => {
+    const optimisitcCommentList = commentList.filter(
+      (comment) => comment.comment_id !== commentId
+    );
+    setCommentList(optimisitcCommentList);
+  };
+
+  const handleOptimisticDeleteError = (savedComment) => {
+    setCommentList((prevCommentList) => [savedComment, ...prevCommentList]);
+  };
+
   useEffect(() => {
     setIsLoading(true);
     axiosBase.get(`/articles/${article_id}/comments`).then(({ data }) => {
@@ -35,7 +46,12 @@ const CommentList = ({ article_id }) => {
         <p>Be the first to comment!</p>
       ) : (
         commentList.map((comment) => (
-          <CommentCard key={comment.comment_id} comment={comment} />
+          <CommentCard
+            key={comment.comment_id}
+            comment={comment}
+            handleOptimisticDelete={handleOptimisticDelete}
+            handleOptimisticDeleteError={handleOptimisticDeleteError}
+          />
         ))
       )}
     </section>

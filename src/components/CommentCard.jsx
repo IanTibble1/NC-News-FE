@@ -1,12 +1,24 @@
 import moment from "moment";
 import axiosBase from "./axiosBase";
 
-const CommentCard = ({ comment }) => {
+const CommentCard = ({
+  comment,
+  handleOptimisticDelete,
+  handleOptimisticDeleteError,
+}) => {
   const handleDelete = () => {
+    const savedComment = comment;
+
+    handleOptimisticDelete(comment.comment_id);
     axiosBase
       .delete(`comments/${comment.comment_id}`)
-      .then(() => {})
-      .catch(() => {});
+      .then(() => {
+        alert("Your comment has been deleted");
+      })
+      .catch((err) => {
+        alert("Failed to delete comment, please try again");
+        handleOptimisticDeleteError(savedComment);
+      });
   };
 
   const formatDate = moment(comment.created_at)
