@@ -14,25 +14,27 @@ const AllArticles = () => {
   const [topicsList, setTopicsList] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
 
-  useEffect(() => {
-    setIsLoading(true);
-    fetchArticles(searchParams)
-      .then(({ data }) => {
-        setArticlesList(data.articles);
-        setIsLoading(false);
-      })
-      .catch((err) => {});
-  }, [searchParams]);
-
-  useEffect(() => {
-    fetchTopics()
-      .then(({ data }) => {
-        setTopicsList(data.topics);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+  if (topicsList.length === 0) {
+    useEffect(() => {
+      fetchTopics()
+        .then(({ data }) => {
+          setTopicsList(data.topics);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }, []);
+  } else {
+    useEffect(() => {
+      setIsLoading(true);
+      fetchArticles(searchParams)
+        .then(({ data }) => {
+          setArticlesList(data.articles);
+          setIsLoading(false);
+        })
+        .catch((err) => {});
+    }, [searchParams]);
+  }
 
   return (
     <main>
