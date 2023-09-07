@@ -22,11 +22,16 @@ const AllArticles = () => {
         .then(({ data }) => {
           setTopicsList(data.topics);
         })
-        .catch(() => {
+        .catch((err) => {
           setIsLoading(false);
-          setError(
-            "Unable to connect, please check internet connection and try again"
-          );
+
+          if (err.response) {
+            setError(err.response.data.message);
+          } else {
+            setError(
+              "Unable to connect, please check internet connection and try again"
+            );
+          }
         });
     }
   }, []);
@@ -41,10 +46,15 @@ const AllArticles = () => {
           setError(null);
         })
         .catch((err) => {
+          console.log(err);
           setIsLoading(false);
-          setError(
-            "Unable to recieve articles, please check internet connection and try again"
-          );
+          if (err.response.data.msg) {
+            setError(err.response.data.msg);
+          } else {
+            setError(
+              "Unable to connect, please check internet connection and try again"
+            );
+          }
         });
     }
   }, [searchParams, topicsList]);
@@ -53,11 +63,17 @@ const AllArticles = () => {
     <main>
       <Header />
       <NavBar />
-      <h4>Filter by Topic</h4>
-      {topicsList.map((topic) => (
-        <TopicList key={topic.slug} topic={topic} />
-      ))}
-      <SortByMenu />
+      {!error && (
+        <section>
+          {" "}
+          <h4>Filter by Topic</h4>
+          {topicsList.map((topic) => (
+            <TopicList key={topic.slug} topic={topic} />
+          ))}
+          <SortByMenu />{" "}
+        </section>
+      )}
+
       {isLoading && (
         <div>
           <p className="loading">Loading...</p>
