@@ -280,3 +280,34 @@ a {
   margin: 5px;
   margin-top: 0;
 }
+
+select {
+  width: 155px;
+  height: 25px;
+}
+
+.menu-container {
+  display: flex;
+  justify-content: center;
+}
+
+.sort-menu {
+  margin-bottom: 10px;
+  margin-right: 10px;
+}
+
+.order-menu {
+  margin-bottom: 10px;
+  margin-right: 10px;
+}
+.order-menu select {
+  height: 30px;
+}
+
+.sort-menu select {
+  height: 30px;
+}
+
+.menu-p {
+  margin-bottom: 3px;
+}
