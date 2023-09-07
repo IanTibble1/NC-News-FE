@@ -9,10 +9,15 @@ const CommentCard = ({
   handleOptimisticDeleteError,
 }) => {
   const { userName } = useContext(UserContext);
+
   const handleDelete = () => {
     const savedComment = comment;
 
     handleOptimisticDelete(comment.comment_id);
+
+    if (comment.comment_id < 0) {
+      return;
+    }
     axiosBase
       .delete(`comments/${comment.comment_id}`)
       .then(() => {})

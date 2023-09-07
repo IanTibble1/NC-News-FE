@@ -3,6 +3,7 @@ import axiosBase from "./axiosBase";
 import { useContext } from "react";
 import { UserContext } from "../contexts/UserContext";
 
+let placeHolderId = -1;
 const PostCommentForm = ({
   article_id,
   handleOptimisticComment,
@@ -15,7 +16,7 @@ const PostCommentForm = ({
     event.preventDefault();
 
     const optimisticComment = {
-      comment_id: 99999,
+      comment_id: placeHolderId--,
       author: userName,
       body: comment,
       votes: 0,
@@ -28,8 +29,16 @@ const PostCommentForm = ({
         username: `${userName}`,
         body: `${comment}`,
       })
-      .then(() => {
-        alert("Your comment has been posted");
+      .then((response) => {
+        const realComment = response.data.comments;
+
+        setCommentList((prevCommentList) =>
+          prevCommentList.map((comment) =>
+            comment.comment_id === optimisticComment.comment_id
+              ? realComment
+              : comment
+          )
+        );
         setComment("");
       })
       .catch((err) => {

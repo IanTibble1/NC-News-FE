@@ -26,32 +26,6 @@ body {
   background-attachment: fixed;
 }
 
-@media only screen and (max-width: 900px) {
-  body {
-    margin: 0;
-    display: flex;
-    place-items: center;
-    min-width: 320px;
-    min-height: 100vh;
-    background-image: url("../public/SL-112119-25250-32.jpg");
-    background-size: auto 100%;
-    background-position: top center;
-  }
-}
-
-@media only screen and (max-width: 400px) {
-  body {
-    margin: 0;
-    display: flex;
-    place-items: center;
-    min-width: 320px;
-    min-height: 100vh;
-    background-image: url("../public/SL-112119-25250-32.jpg");
-    background-size: 400%;
-    background-position: center;
-  }
-}
-
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
@@ -85,7 +59,6 @@ button:focus-visible {
 
 nav {
   background-color: blue;
-  color: ;
 }
 
 nav ul {
@@ -117,48 +90,6 @@ nav li {
   max-width: 100%;
   height: auto;
   min-height: 300px;
-}
-
-@media only screen and (max-width: 900px) {
-  .article-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-  }
-
-  .article-list {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .article-imgs {
-    border-radius: 10%;
-    max-width: auto;
-    height: auto;
-    min-height: 300px;
-  }
-}
-
-@media only screen and (max-width: 400px) {
-  .article-grid {
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    gap: 20px;
-  }
-
-  .article-list {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .article-imgs {
-    border-radius: 10%;
-    max-width: auto;
-    height: auto;
-    min-height: 300px;
-  }
 }
 
 a {
@@ -205,58 +136,6 @@ a {
   backdrop-filter: blur(10px);
   border-radius: 10px;
   max-width: 500px;
-}
-
-@media only screen and (max-width: 900px) {
-  .article-card {
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    align-items: center;
-    gap: 20px;
-  }
-
-  .blurred-textbox {
-    padding: 20px;
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
-    border-radius: 10px;
-    max-width: 500px;
-    margin: auto;
-  }
-
-  .article-image {
-    grid-row: span 1;
-  }
-
-  .article-image img {
-    max-width: 500px;
-  }
-}
-
-@media only screen and (max-width: 400px) {
-  .article-card {
-    display: grid;
-    grid-template-columns: repeat(1, 1fr);
-    align-items: center;
-    gap: 20px;
-  }
-
-  .blurred-textbox {
-    padding: 20px;
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(10px);
-    border-radius: 10px;
-    max-width: 500px;
-    margin: auto;
-  }
-
-  .article-image {
-    grid-row: span 1;
-  }
-
-  .article-image img {
-    max-width: 300px;
-  }
 }
 
 .comment-card {
@@ -314,4 +193,116 @@ select {
 
 .h2-error {
   margin-top: 50px;
+}
+
+@media only screen and (max-width: 900px) {
+  body {
+    margin: 0;
+    display: flex;
+    place-items: center;
+    min-width: 320px;
+    min-height: 100vh;
+    background-image: url("../public/SL-112119-25250-32.jpg");
+    background-size: auto 100%;
+    background-position: top center;
+  }
+
+  .article-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .article-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .article-imgs {
+    border-radius: 10%;
+    max-width: auto;
+    height: auto;
+    min-height: 300px;
+  }
+
+  .article-card {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    align-items: center;
+    gap: 20px;
+  }
+
+  .blurred-textbox {
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    max-width: 500px;
+    margin: auto;
+  }
+
+  .article-image {
+    grid-row: span 1;
+  }
+
+  .article-image img {
+    max-width: 500px;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  body {
+    margin: 0;
+    display: flex;
+    place-items: center;
+    min-width: 320px;
+    min-height: 100vh;
+    background-image: url("../public/SL-112119-25250-32.jpg");
+    background-size: 400%;
+    background-position: center;
+  }
+
+  .article-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 20px;
+  }
+
+  .article-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .article-imgs {
+    border-radius: 10%;
+    max-width: auto;
+    height: auto;
+    min-height: 300px;
+  }
+
+  .article-card {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    align-items: center;
+    gap: 20px;
+  }
+
+  .blurred-textbox {
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    max-width: 500px;
+    margin: auto;
+  }
+
+  .article-image {
+    grid-row: span 1;
+  }
+
+  .article-image img {
+    max-width: 300px;
+  }
 }
