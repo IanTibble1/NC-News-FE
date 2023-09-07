@@ -14,8 +14,8 @@ const AllArticles = () => {
   const [topicsList, setTopicsList] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
 
-  if (topicsList.length === 0) {
-    useEffect(() => {
+  useEffect(() => {
+    if (topicsList.length === 0) {
       fetchTopics()
         .then(({ data }) => {
           setTopicsList(data.topics);
@@ -23,9 +23,11 @@ const AllArticles = () => {
         .catch((err) => {
           console.log(err);
         });
-    }, []);
-  } else {
-    useEffect(() => {
+    }
+  }, []);
+
+  useEffect(() => {
+    if (topicsList.length > 0) {
       setIsLoading(true);
       fetchArticles(searchParams)
         .then(({ data }) => {
@@ -33,8 +35,8 @@ const AllArticles = () => {
           setIsLoading(false);
         })
         .catch((err) => {});
-    }, [searchParams]);
-  }
+    }
+  }, [searchParams, topicsList]);
 
   return (
     <main>
