@@ -6,6 +6,7 @@ import fetchArticles from "./components/fetchArticle";
 import fetchTopics from "./components/fetchTopics";
 import TopicList from "./components/TopicList";
 import { useSearchParams } from "react-router-dom";
+import SortByMenu from "./components/SortByMenu";
 
 const AllArticles = () => {
   const [articlesList, setArticlesList] = useState([]);
@@ -31,7 +32,7 @@ const AllArticles = () => {
       .catch((err) => {
         console.log(err);
       });
-  });
+  }, []);
 
   return (
     <main>
@@ -39,12 +40,9 @@ const AllArticles = () => {
       <NavBar />
       <h4>Filter by Topic</h4>
       {topicsList.map((topic) => (
-        <TopicList
-          key={topic.slug}
-          topic={topic}
-          setSearchParams={setSearchParams}
-        />
+        <TopicList key={topic.slug} topic={topic} />
       ))}
+      <SortByMenu />
 
       {isLoading ? (
         <p className="loading">Loading...</p>

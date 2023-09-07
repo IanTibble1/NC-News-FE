@@ -1,13 +1,17 @@
-const TopicList = ({ topic, setSearchParams }) => {
+import { useSearchParams } from "react-router-dom";
+
+const TopicList = ({ topic }) => {
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const handleClick = () => {
+    const newParams = new URLSearchParams(searchParams);
+    newParams.set("topic", topic.slug);
+    setSearchParams(newParams);
+  };
+
   return (
     <div className="cat-buttons">
-      <button
-        onClick={() => {
-          setSearchParams({ topic: topic.slug });
-        }}
-      >
-        {topic.slug}
-      </button>
+      <button onClick={handleClick}>{topic.slug}</button>
     </div>
   );
 };
