@@ -16,7 +16,7 @@ const PostCommentForm = ({
 
     const optimisticComment = {
       comment_id: 99999,
-      username: userName,
+      author: userName,
       body: comment,
       votes: 0,
     };
