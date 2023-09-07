@@ -15,40 +15,42 @@ const PostCommentForm = ({
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    const optimisticComment = {
-      comment_id: placeHolderId--,
-      author: userName,
-      body: comment,
-      votes: 0,
-    };
+    if (comment.length > 0) {
+      const optimisticComment = {
+        comment_id: placeHolderId--,
+        author: userName,
+        body: comment,
+        votes: 0,
+      };
 
-    handleOptimisticComment(optimisticComment);
+      handleOptimisticComment(optimisticComment);
 
-    axiosBase
-      .post(`articles/${article_id}/comments`, {
-        username: `${userName}`,
-        body: `${comment}`,
-      })
-      .then((response) => {
-        const realComment = response.data.comments;
+      axiosBase
+        .post(`articles/${article_id}/comments`, {
+          username: `${userName}`,
+          body: `${comment}`,
+        })
+        .then((response) => {
+          const realComment = response.data.comments;
 
-        setCommentList((prevCommentList) =>
-          prevCommentList.map((comment) =>
-            comment.comment_id === optimisticComment.comment_id
-              ? realComment
-              : comment
-          )
-        );
-        setComment("");
-      })
-      .catch((err) => {
-        alert("Something went wrong. Please try posting again");
-        setCommentList((prevCommentList) => {
-          return prevCommentList.filter((comment) => {
-            comment !== optimisticComment;
+          setCommentList((prevCommentList) =>
+            prevCommentList.map((comment) =>
+              comment.comment_id === optimisticComment.comment_id
+                ? realComment
+                : comment
+            )
+          );
+          setComment("");
+        })
+        .catch((err) => {
+          alert("Something went wrong. Please try posting again");
+          setCommentList((prevCommentList) => {
+            return prevCommentList.filter((comment) => {
+              comment !== optimisticComment;
+            });
           });
         });
-      });
+    }
   };
 
   return (
