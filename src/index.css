@@ -311,3 +311,7 @@ select {
 .menu-p {
   margin-bottom: 3px;
 }
+
+.h2-error {
+  margin-top: 50px;
+}
