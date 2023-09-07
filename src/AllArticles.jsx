@@ -11,28 +11,43 @@ import SortByMenu from "./components/SortByMenu";
 const AllArticles = () => {
   const [articlesList, setArticlesList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [topicsList, setTopicsList] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
-    setIsLoading(true);
-    fetchArticles(searchParams)
-      .then(({ data }) => {
-        setArticlesList(data.articles);
-        setIsLoading(false);
-      })
-      .catch((err) => {});
-  }, [searchParams]);
+    if (topicsList.length === 0) {
+      setIsLoading(true);
+      fetchTopics()
+        .then(({ data }) => {
+          setTopicsList(data.topics);
+        })
+        .catch(() => {
+          setIsLoading(false);
+          setError(
+            "Unable to connect, please check internet connection and try again"
+          );
+        });
+    }
+  }, []);
 
   useEffect(() => {
-    fetchTopics()
-      .then(({ data }) => {
-        setTopicsList(data.topics);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+    if (topicsList.length > 0) {
+      setIsLoading(true);
+      fetchArticles(searchParams)
+        .then(({ data }) => {
+          setArticlesList(data.articles);
+          setIsLoading(false);
+          setError(null);
+        })
+        .catch((err) => {
+          setIsLoading(false);
+          setError(
+            "Unable to recieve articles, please check internet connection and try again"
+          );
+        });
+    }
+  }, [searchParams, topicsList]);
 
   return (
     <main>
@@ -43,16 +58,17 @@ const AllArticles = () => {
         <TopicList key={topic.slug} topic={topic} />
       ))}
       <SortByMenu />
-
-      {isLoading ? (
-        <p className="loading">Loading...</p>
-      ) : (
-        <div className="article-grid">
-          {articlesList.map((article) => (
-            <ArticleList key={article.article_id} article={article} />
-          ))}
+      {isLoading && (
+        <div>
+          <p className="loading">Loading...</p>
         </div>
       )}
+      <div className="article-grid">
+        {articlesList.map((article) => (
+          <ArticleList key={article.article_id} article={article} />
+        ))}
+      </div>
+      {error && <p>{error}</p>}
     </main>
   );
 };
