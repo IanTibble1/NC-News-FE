@@ -4,6 +4,7 @@ const SortByMenu = ({}) => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const handleChangeSort = (event) => {
+    event.preventDefault();
     const newSort = event.target.value;
     const newParams = new URLSearchParams(searchParams);
     newParams.set("sort_by", newSort);
@@ -11,6 +12,7 @@ const SortByMenu = ({}) => {
   };
 
   const handleChangeOrder = (event) => {
+    event.preventDefault();
     const newOrder = event.target.value;
     const newParams = new URLSearchParams(searchParams);
     newParams.set("order", newOrder);

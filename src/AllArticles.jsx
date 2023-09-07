@@ -58,18 +58,17 @@ const AllArticles = () => {
         <TopicList key={topic.slug} topic={topic} />
       ))}
       <SortByMenu />
-
-      {isLoading ? (
-        <p className="loading">Loading...</p>
-      ) : error ? (
-        <p>{error}</p>
-      ) : (
-        <div className="article-grid">
-          {articlesList.map((article) => (
-            <ArticleList key={article.article_id} article={article} />
-          ))}
+      {isLoading && (
+        <div>
+          <p className="loading">Loading...</p>
         </div>
       )}
+      <div className="article-grid">
+        {articlesList.map((article) => (
+          <ArticleList key={article.article_id} article={article} />
+        ))}
+      </div>
+      {error && <p>{error}</p>}
     </main>
   );
 };
