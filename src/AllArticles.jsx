@@ -11,17 +11,22 @@ import SortByMenu from "./components/SortByMenu";
 const AllArticles = () => {
   const [articlesList, setArticlesList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [topicsList, setTopicsList] = useState([]);
   const [searchParams, setSearchParams] = useSearchParams();
 
   useEffect(() => {
     if (topicsList.length === 0) {
+      setIsLoading(true);
       fetchTopics()
         .then(({ data }) => {
           setTopicsList(data.topics);
         })
-        .catch((err) => {
-          console.log(err);
+        .catch(() => {
+          setIsLoading(false);
+          setError(
+            "Unable to connect, please check internet connection and try again"
+          );
         });
     }
   }, []);
@@ -33,8 +38,14 @@ const AllArticles = () => {
         .then(({ data }) => {
           setArticlesList(data.articles);
           setIsLoading(false);
+          setError(null);
         })
-        .catch((err) => {});
+        .catch((err) => {
+          setIsLoading(false);
+          setError(
+            "Unable to recieve articles, please check internet connection and try again"
+          );
+        });
     }
   }, [searchParams, topicsList]);
 
@@ -50,6 +61,8 @@ const AllArticles = () => {
 
       {isLoading ? (
         <p className="loading">Loading...</p>
+      ) : error ? (
+        <p>{error}</p>
       ) : (
         <div className="article-grid">
           {articlesList.map((article) => (
