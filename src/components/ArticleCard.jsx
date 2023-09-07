@@ -16,7 +16,6 @@ const ArticleCard = ({ article }) => {
       axiosBase
         .patch(`articles/${article.article_id}`, { inc_vote: 1 })
         .then(() => {
-          alert("Your vote has been registered");
           setHasRemovedVote(false);
         })
         .catch((err) => {
@@ -36,7 +35,6 @@ const ArticleCard = ({ article }) => {
       axiosBase
         .patch(`articles/${article.article_id}`, { inc_vote: 1 })
         .then(() => {
-          alert("Your vote has been registered");
           setHasVoted(false);
         })
         .catch((err) => {

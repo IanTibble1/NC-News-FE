@@ -15,9 +15,7 @@ const CommentCard = ({
     handleOptimisticDelete(comment.comment_id);
     axiosBase
       .delete(`comments/${comment.comment_id}`)
-      .then(() => {
-        alert("Your comment has been deleted");
-      })
+      .then(() => {})
       .catch((err) => {
         alert(
           "Failed to delete comment, please refresh the page and try again"
