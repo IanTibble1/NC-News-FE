@@ -59,6 +59,7 @@ button:focus-visible {
 
 nav {
   background-color: blue;
+  overflow: hidden;
 }
 
 nav ul {
@@ -71,6 +72,13 @@ nav ul {
 
 nav li {
   display: inline;
+}
+
+.banner,
+nav {
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
 }
 
 .article-grid {
@@ -106,20 +114,29 @@ a {
 
 .article-card {
   display: grid;
-  grid-template-columns: 1fr 2fr;
-  grid-template-rows: repeat(3, auto);
-  gap: 1rem;
+  grid-template-columns: repeat(1, 1fr);
   align-items: center;
-  border: 1px solid black;
-  padding: 10px;
+  gap: 20px;
+}
+
+.blurred-textbox {
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  min-width: 800px;
+  margin: auto;
+  margin-top: 10px;
 }
 
 .article-image {
-  grid-row: span 3;
+  grid-row: span 1;
 }
 
 .article-image img {
-  grid-row: span 3;
+  margin-top: 20px;
+  min-height: auto;
+  max-width: 500px;
 }
 
 .vote-section {
@@ -135,7 +152,7 @@ a {
   background: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(10px);
   border-radius: 10px;
-  max-width: 500px;
+  max-width: 700px;
 }
 
 .comment-card {
@@ -143,7 +160,7 @@ a {
   background: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(10px);
   border-radius: 10px;
-  max-width: 500px;
+  max-width: 600px;
   margin: auto;
   margin-bottom: 10px;
 }
@@ -184,35 +201,7 @@ select {
 }
 
 .sort-menu select {
-  height: 30px;
-}
-
-.menu-p {
-  margin-bottom: 3px;
-}
-
-.h2-error {
-  margin-top: 50px;
-}
-
-@media only screen and (max-width: 900px) {
-  body {
-    margin: 0;
-    display: flex;
-    place-items: center;
-    min-width: 320px;
-    min-height: 100vh;
-    background-image: url("../public/SL-112119-25250-32.jpg");
-    background-size: auto 100%;
-    background-position: top center;
-  }
-
-  .article-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-  }
-
+  background-attachment: fixed;
   .article-list {
     display: flex;
     flex-direction: column;
@@ -251,7 +240,7 @@ select {
   }
 }
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 1150px) {
   body {
     margin: 0;
     display: flex;
@@ -259,8 +248,203 @@ select {
     min-width: 320px;
     min-height: 100vh;
     background-image: url("../public/SL-112119-25250-32.jpg");
-    background-size: 400%;
+    background-size: cover;
+    background-position: top center;
+    background-attachment: fixed;
+  }
+
+  .article-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .article-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .article-imgs {
+    border-radius: 10%;
+    max-width: auto;
+    height: auto;
+    min-height: 300px;
+  }
+
+  .article-card {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    align-items: center;
+    gap: 20px;
+  }
+
+  .blurred-textbox {
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    min-width: 500px;
+
+    margin: auto;
+  }
+
+  .comment-card {
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    max-width: 500px;
+    margin: auto;
+    margin-bottom: 10px;
+  }
+
+  .article-image {
+    grid-row: span 1;
+  }
+
+  .article-image img {
+    max-width: 500px;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  body {
+    margin: 0;
+    display: flex;
+    place-items: center;
+    min-width: 800px;
+    min-height: 100vh;
+    background-image: url("../public/SL-112119-25250-32.jpg");
+    background-size: cover;
+    background-position: top center;
+    background-attachment: fixed;
+    min-height: 800px;
+  }
+
+  .article-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 20px;
+  }
+
+  .article-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .article-imgs {
+    border-radius: 10%;
+    max-width: auto;
+    height: auto;
+    max-height: 300px;
+    min-height: 300px;
+  }
+
+  .article-card {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    align-items: center;
+    gap: 20px;
+  }
+
+  .blurred-textbox {
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    min-width: 400px;
+
+    margin: auto;
+  }
+
+  .comment-card {
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    max-width: 400px;
+    margin: auto;
+    margin-bottom: 10px;
+  }
+  .article-image {
+    grid-row: span 1;
+  }
+
+  .article-image img {
+    max-width: 500px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  body {
+    margin: 0;
+    display: flex;
+    place-items: center;
+    min-width: 600px;
+    min-height: 100vh;
+    background-image: url("../public/SL-112119-25250-32.jpg");
+    background-size: cover;
     background-position: center;
+    background-attachment: fixed;
+  }
+  .article-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 20px;
+  }
+
+  .article-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .article-imgs {
+    border-radius: 10%;
+    max-width: auto;
+    height: auto;
+    min-height: 200px;
+    max-height: 200px;
+  }
+
+  .article-card {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    align-items: center;
+    gap: 20px;
+  }
+
+  .blurred-textbox {
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    max-width: 400px;
+    margin: auto;
+  }
+
+  .article-image {
+    grid-row: span 1;
+  }
+
+  .article-image img {
+    max-width: 300px;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  body {
+    margin: 0;
+    display: flex;
+    place-items: center;
+    min-width: 500px;
+    min-height: 100vh;
+    background-image: url("../public/SL-112119-25250-32.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
   }
 
   .article-grid {
@@ -294,7 +478,7 @@ select {
     background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(10px);
     border-radius: 10px;
-    max-width: 500px;
+    max-width: 400px;
     margin: auto;
   }
 
